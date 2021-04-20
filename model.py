@@ -68,6 +68,7 @@ model.fit(X_train, y_train, epochs=100)
 
 # Make and plot predictions for model_1
 y_preds = model.predict(X_test)
+# Plot the predictions.
 plot_predictions(train_data=X_train, train_labels=y_train,  test_data=X_test, test_labels=y_test,  predictions=y_preds)
 
 # Calculate model_1 metrics
