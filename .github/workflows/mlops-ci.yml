@@ -12,11 +12,17 @@ jobs:
         run: |
 
           # STEP-1: Install required packages and run the python file
-            pip install -r requirements.txt
-            python model.py
+          pip install -r requirements.txt
+          python model.py
 
           # STEP-2: Create a Markdown file and write the results into that file.
+              # STEP-2.1
           echo "## Model Metrics" > mlops_demo_report.md
           cat metrics.txt >> mlops_demo_report.md
-              # CML library has functinality to send comments as reports
+              # STEP 2.2
+           echo "\n## Model Performance" >> mlops_demo_report.md
+           echo "Model performance metrics are on the plot below." >> mlops_demo_report.md
+           cml-publish model_results.png --md >> mlops_demo_report.md
+
+          # STEP 3 CML library has functinality to send comments as reports
           cml-send-comment mlops_demo_report.md
