@@ -1,17 +1,16 @@
 name: mlops-ci-demo-kc
 on: [push] # You can trigger the pipeline in any branch, or a specific branch you define
 jobs:
-run:
+  run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest # This is the docker file with many built in functionalities for MLOps. Link: https://dvc.org/
+    container: docker://dvcorg/cml-py3:latest
     steps:
-    - uses: actions/checkout@v2
-    - name: 'Train my model'
+      - uses: actions/checkout@v2
+      - name: 'Train my model'
         env:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
-        # Define the steps of the pipeline.
-        
-        # STEP-1: Install required packages and run the python file
-        pip install -r requirements.txt
-        python model.py
+
+          # STEP-1: Install required packages and run the python file
+          pip install -r requirements.txt
+          python model.py
