@@ -64,7 +64,7 @@ model = tf.keras.Sequential([tf.keras.layers.Dense(1), tf.keras.layers.Dense(1)]
 model.compile(loss = tf.keras.losses.mae, optimizer = tf.keras.optimizers.SGD(), metrics = ['mae'])
 
 # Fit the model
-model.fit(X_train, y_train, epochs=100)
+model.fit(X_train, y_train, epochs=50)
 
 # Make and plot predictions for model_1
 y_preds = model.predict(X_test)
