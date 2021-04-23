@@ -14,3 +14,9 @@ jobs:
           # STEP-1: Install required packages and run the python file
           pip install -r requirements.txt
           python model.py
+          
+          # STEP-2: Create a Markdown file and write results in to that file
+          echo "## Model Metrics" > mlops-kc-demo.md
+          cat metrics.txt >> mlops-kc-demo.md
+          
+          cml-send-comment mlops-kc-demo.md
