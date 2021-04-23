@@ -69,7 +69,7 @@ model.fit(X_train, y_train, epochs=50)
 # Make and plot predictions for model_1
 y_preds = model.predict(X_test)
 # Enable for chart output in Github Actions
-# plot_predictions(train_data=X_train, train_labels=y_train,  test_data=X_test, test_labels=y_test,  predictions=y_preds)
+plot_predictions(train_data=X_train, train_labels=y_train,  test_data=X_test, test_labels=y_test,  predictions=y_preds)
 
 # Calculate model_1 metrics
 mae_1 = np.round(float(mae(y_test, y_preds.squeeze()).numpy()), 2)
