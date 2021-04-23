@@ -1,0 +1,29 @@
+name: mlops-ci-demo-kc
+on: [push] # You can trigger the pipeline in any branch, or a specific branch you define
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Train my model'
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+
+          # STEP-1: Install required packages and run the python file
+          pip install -r requirements.txt
+          python model.py
+          
+          # STEP-2: Create a Markdown file and write results in to that file
+          # STEP 2.1
+          echo "## Model Metrics" > mlops-kc-demo.md
+          cat metrics.txt >> mlops-kc-demo.md
+          
+          # STEP 2.2
+          echo "\## Mdeol Performance" >> mlops-kc-demo.md
+          echo "Model performance metrics are on the plot below." >> mlops-kc-demo.md
+          cml-publish model_results.png --md >> mlops-kc-demo.md
+          
+          # STEP 3 CML library built-in function
+          cml-send-comment mlops-kc-demo.md
